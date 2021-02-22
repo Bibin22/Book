@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit">
+</form>
+<table>
+    <tr>
+        <td>Book Id</td>
+        <td>Book</td>
+        <td>Pages</td>
+        <td>Price</td>
+        <td>Author</td>
+    </tr>
+    {% for book in books %}
+    <tr>
+        <td>{{book.id}}</td>
+        <td>{{book.book_name}}</td>
+         <td>{{book.pages}}</td>
+         <td>{{book.price}}</td>
+         <td>{{book.author}}</td>
+        <td><a href="{% url 'view' book.id %}">view </a> </td>
+        <td><a href="{% url 'edit' book.id %}">Edit </a> </td>
+        <td><a href="{% url 'delete' book.id %}">Delete </a> </td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
